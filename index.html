@@ -9,10 +9,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Custom SASS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!--Slider-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body>
+    <!-- Skip link -->
+    <a href="#main-content" class="skip-link visually-hidden">Skip to main content</a>
+    
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" role="navigation" aria-label="Main navigation">
         <div class="container">
             <!-- Logo in yellow circle -->
             <a class="navbar-brand" href="#">
@@ -27,41 +33,41 @@
             </a>
             
             <!-- Custom mobile menu button -->
-            <button class="mobile-menu-btn d-lg-none" type="button" aria-label="Toggle mobile menu">
+            <button class="mobile-menu-btn d-lg-none" type="button" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             
             <!-- Desktop Navigation -->
-            <div class="desktop-nav d-none d-lg-flex align-items-center">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pirate</a>
+            <div class="desktop-nav d-none d-lg-flex align-items-center" id="desktop-nav">
+                <ul class="navbar-nav mx-auto" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="#" role="menuitem">Pirate</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="parrotsDropdown">
-                            Parrots <i class="bi bi-chevron-down nav-chevron"></i>
+                    <li class="nav-item dropdown" role="none">
+                        <a class="nav-link" href="#" id="parrotsDropdown" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                            Parrots <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
                         </a>
-                        <ul class="dropdown-menu horizontal-dropdown parrots-menu">
-                            <li><a class="dropdown-item" href="#"><strong>Red</strong></a></li>
-                            <li><a class="dropdown-item" href="#"><strong>Violet</strong></a></li>
-                            <li><a class="dropdown-item" href="#"><strong>Yellow</strong></a></li>
-                            <li><a class="dropdown-item" href="#"><strong>Green</strong></a></li>
+                        <ul class="dropdown-menu horizontal-dropdown parrots-menu" role="menu" aria-labelledby="parrotsDropdown">
+                            <li role="none"><a class="dropdown-item" href="#" role="menuitem"><strong>Red</strong></a></li>
+                            <li role="none"><a class="dropdown-item" href="#" role="menuitem"><strong>Violet</strong></a></li>
+                            <li role="none"><a class="dropdown-item" href="#" role="menuitem"><strong>Yellow</strong></a></li>
+                            <li role="none"><a class="dropdown-item" href="#" role="menuitem"><strong>Green</strong></a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ships</a>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="#ships-section" role="menuitem">Ships</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Events</a>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="#events-section" role="menuitem">Events</a>
                     </li>
                 </ul>
                 <a href="#" class="custom-btn">Contacts</a>
             </div>
 
             <!-- Mobile Menu -->
-            <div class="mobile-menu">
+            <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation menu">
                 <div class="mobile-menu-content">
                     <ul class="mobile-nav">
                         <li><strong><a class="mobile-btn" href="#">Pirate</a></strong></li>
@@ -88,8 +94,8 @@
         </div>
     </nav>
 
-        <div class="bg-image"></div>
-        <div class="container h-100 d-flex align-items-end justify-content-center pb-5">
+        <div class="bg-image" role="img" aria-label="Background decorative image"></div>
+        <div class="container h-100 d-flex align-items-end justify-content-center pb-5" id="main-content">
             <div class="row">
                 <div class="col text-center">
                     <h1 class="main-title"><strong> Pirate ipsum </strong></h1>
@@ -114,7 +120,7 @@
         </div>
     </div>
 
-    <div class="container-fluid ships-section section-style p-0">
+    <div class="container-fluid ships-section section-style p-0" id="ships-section">
         <div class="container">
             <div class="row justify-content-end">
                 <div class="col-lg-7 col-md-10">
@@ -147,7 +153,7 @@
         </div>
     </div>
 
-    <div class="container-fluid events-section py-5">
+    <div class="container-fluid events-section py-5" id="events-section">
         <div class="container">
             <div class="row mb-4">
                 <div class="col-12 text-center">
@@ -155,70 +161,70 @@
                 </div>
             </div>
             <div class="events-container position-relative">
-                <button class="nav-arrow nav-prev d-md-none">
-                    <i class="bi bi-chevron-left"></i>
+                <button class="nav-arrow nav-prev d-md-none" aria-label="Previous events">
+                    <i class="bi bi-chevron-left" aria-hidden="true"></i>
                 </button>
-                <button class="nav-arrow nav-next d-md-none">
-                    <i class="bi bi-chevron-right"></i>
+                <button class="nav-arrow nav-next d-md-none" aria-label="Next events">
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
                 </button>
                 <div class="row events-wrapper">
                 <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
-                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 1">
+                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event featuring ships and crew">
                         <div class="card-body">
-                            <h5 class="card-title">Event Title 1</h5>
+                            <h3 class="card-title">Event Title 1</h3>
                             <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
-                            <a href="#" class="card-btn custom-btn"><p class="d-none">Read more</p><i class="bi bi-arrow-right"></i></a>
+                            <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 1"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
-                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 2">
+                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with ships and crew members">
                         <div class="card-body">
-                            <h5 class="card-title">Event Title 2</h5>
+                            <h3 class="card-title">Event Title 2</h3>
                             <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
-                            <a href="#" class="card-btn custom-btn"><p class="d-none">Read more</p><i class="bi bi-arrow-right"></i></a>
+                            <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 2"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
-                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 3">
+                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event featuring treasure hunt">
                         <div class="card-body">
-                            <h5 class="card-title">Event Title 3</h5>
+                            <h3 class="card-title">Event Title 3</h3>
                             <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
-                            <a href="#" class="card-btn custom-btn"><p class="d-none">Read more</p><i class="bi bi-arrow-right"></i></a>
+                            <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 3"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
-                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 4">
+                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with traditional activities">
                         <div class="card-body">
-                            <h5 class="card-title">Event Title 4</h5>
+                            <h3 class="card-title">Event Title 4</h3>
                             <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
-                            <a href="#" class="card-btn custom-btn"><p class="d-none">Read more</p><i class="bi bi-arrow-right"></i></a>
+                            <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 4"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
-                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 5">
+                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with sea shanties">
                         <div class="card-body">
-                            <h5 class="card-title">Event Title 5</h5>
+                            <h3 class="card-title">Event Title 5</h3>
                             <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
-                            <a href="#" class="card-btn custom-btn"><p class="d-none">Read more</p><i class="bi bi-arrow-right"></i></a>
+                            <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 5"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
-                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 6">
+                        <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with historical reenactments">
                         <div class="card-body">
-                            <h5 class="card-title">Event Title 6</h5>
+                            <h3 class="card-title">Event Title 6</h3>
                             <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
-                            <a href="#" class="card-btn custom-btn"><p class="d-none">Read more</p><i class="bi bi-arrow-right"></i></a>
+                            <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 6"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -226,7 +232,7 @@
         </div>
     </div>
 
-    <div class="container-fluid timeline-section py-5">
+    <div class="container-fluid timeline-section py-5" role="region" aria-label="Timeline">
         <div class="container">
             <div class="row mb-4">
                 <div class="col-12 text-center">
@@ -235,13 +241,13 @@
             </div>
             <div class="row timeline-row">
                 <div class="col-md-4 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
-                    <div class="timeline-circle">1</div>
+                    <div class="timeline-circle" role="listitem" aria-label="Timeline step 1">1</div>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
-                    <div class="timeline-circle">2</div>
+                    <div class="timeline-circle" role="listitem" aria-label="Timeline step 2">2</div>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
-                    <div class="timeline-circle">3</div>
+                    <div class="timeline-circle" role="listitem" aria-label="Timeline step 3">3</div>
                 </div>
             </div>
         </div>

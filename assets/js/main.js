@@ -1,4 +1,11 @@
 $(document).ready(function() {
+    // Skip link focus management
+    $('.skip-link').on('focus', function() {
+        $(this).removeClass('visually-hidden');
+    }).on('blur', function() {
+        $(this).addClass('visually-hidden');
+    });
+
     // Handle color links (page reload)
     $('.dropdown-item, .mobile-submenu a').each(function() {
         const text = $(this).text().trim().toLowerCase();
@@ -57,26 +64,53 @@ $(document).ready(function() {
     const $nextBtn = $('.nav-next');
 
     if ($eventsWrapper.length && $prevBtn.length && $nextBtn.length) {
-        $prevBtn.on('click', function() {
-            const scrollAmount = $eventsWrapper.width() * 0.85; // 85% of container width
+        // Add ARIA labels for carousel
+        $eventsWrapper.attr('role', 'region')
+                     .attr('aria-label', 'Events carousel');
+        
+        // Function to update button states
+        function updateCarouselButtons() {
+            const maxScroll = $eventsWrapper[0].scrollWidth - $eventsWrapper.width();
+            const isAtStart = $eventsWrapper.scrollLeft() === 0;
+            const isAtEnd = $eventsWrapper.scrollLeft() >= maxScroll - 1;
+            
+            $prevBtn.prop('disabled', isAtStart)
+                   .attr('aria-disabled', isAtStart)
+                   .css('opacity', isAtStart ? '0.5' : '1');
+                   
+            $nextBtn.prop('disabled', isAtEnd)
+                   .attr('aria-disabled', isAtEnd)
+                   .css('opacity', isAtEnd ? '0.5' : '1');
+        }
+
+        // Event handlers for buttons with keyboard support
+        $prevBtn.on('click keydown', function(e) {
+            if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+            e.preventDefault();
+            const scrollAmount = $eventsWrapper.width() * 0.85;
             $eventsWrapper.animate({
                 scrollLeft: '-=' + scrollAmount
-            }, 'smooth');
+            }, 'smooth', updateCarouselButtons);
         });
 
-        $nextBtn.on('click', function() {
-            const scrollAmount = $eventsWrapper.width() * 0.85; // 85% of container width
+        $nextBtn.on('click keydown', function(e) {
+            if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+            e.preventDefault();
+            const scrollAmount = $eventsWrapper.width() * 0.85;
             $eventsWrapper.animate({
                 scrollLeft: '+=' + scrollAmount
-            }, 'smooth');
+            }, 'smooth', updateCarouselButtons);
         });
 
-        // Hide/show arrows based on scroll position
-        $eventsWrapper.on('scroll', function() {
-            const maxScroll = $eventsWrapper[0].scrollWidth - $eventsWrapper.width();
-            $prevBtn.css('opacity', $eventsWrapper.scrollLeft() === 0 ? '0.5' : '1');
-            $nextBtn.css('opacity', $eventsWrapper.scrollLeft() >= maxScroll - 1 ? '0.5' : '1');
-        });
+        // Update buttons on scroll
+        $eventsWrapper.on('scroll', updateCarouselButtons);
+
+        // Add keyboard navigation for events cards
+        $('.event-item').attr('role', 'group')
+                       .attr('aria-roledescription', 'slide');
+        
+        // Initial button state
+        updateCarouselButtons();
     }
 
     const $navbar = $('.navbar');
@@ -113,38 +147,117 @@ $(document).ready(function() {
         }
     }
 
-    // Mobile menu toggle
-    $mobileMenuBtn.on('click', function() {
-        $(this).toggleClass('active');
+    // Mobile menu toggle with keyboard support and focus management
+    $mobileMenuBtn.on('click keydown', function(e) {
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        
+        const isOpening = !$(this).hasClass('active');
+        $(this).toggleClass('active')
+               .attr('aria-expanded', isOpening);
         $mobileMenu.toggleClass('active');
+        
         // Prevent body scroll when menu is open
-        $('body').css('overflow', $(this).hasClass('active') ? 'hidden' : '');
+        $('body').css('overflow', isOpening ? 'hidden' : '');
+        
+        if (isOpening) {
+            // Focus first interactive element when menu opens
+            $mobileMenu.find('a:first').focus();
+        }
     });
 
-    // Mobile submenu toggle
-    $submenuTrigger.on('click', function(e) {
+    // Mobile submenu toggle with keyboard support
+    $submenuTrigger.on('click keydown', function(e) {
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         $mobileSubmenu.addClass('active');
+        // Focus first element in submenu
+        $mobileSubmenu.find('a:first').focus();
     });
 
-    // Back button functionality
-    $backButton.on('click', function() {
+    // Back button functionality with keyboard support
+    $backButton.on('click keydown', function(e) {
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
         $mobileSubmenu.removeClass('active');
+        // Return focus to submenu trigger
+        $submenuTrigger.find('a').focus();
     });
 
-    // Desktop dropdown functionality
+    // Handle keyboard navigation in mobile menu
+    $mobileMenu.on('keydown', 'a', function(e) {
+        const $items = $mobileMenu.find('a:visible');
+        const $current = $(this);
+        const index = $items.index($current);
+        
+        switch(e.key) {
+            case 'ArrowUp':
+                e.preventDefault();
+                if (index > 0) $items.eq(index - 1).focus();
+                break;
+            case 'ArrowDown':
+                e.preventDefault();
+                if (index < $items.length - 1) $items.eq(index + 1).focus();
+                break;
+            case 'Escape':
+                e.preventDefault();
+                closeMobileMenu();
+                $mobileMenuBtn.focus();
+                break;
+        }
+    });
+
+    // Desktop dropdown functionality with keyboard support
     $dropdown.hide();
 
-    $parrotsLink.on('click', function(e) {
+    $parrotsLink.on('click keydown', function(e) {
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         if ($(window).width() >= 992) { // Only for desktop
-            if ($dropdown.is(':hidden')) {
+            const isOpening = $dropdown.is(':hidden');
+            if (isOpening) {
                 $dropdown.css('display', 'flex');
                 $parrotsDropdown.addClass('show');
+                // Focus first dropdown item when menu opens
+                $dropdown.find('a:first').focus();
             } else {
                 $dropdown.hide();
                 $parrotsDropdown.removeClass('show');
             }
+            $(this).attr('aria-expanded', isOpening);
+        }
+    });
+
+    // Handle keyboard navigation in desktop dropdown
+    $dropdown.on('keydown', 'a', function(e) {
+        const $items = $dropdown.find('a');
+        const $current = $(this);
+        const index = $items.index($current);
+        
+        switch(e.key) {
+            case 'ArrowLeft':
+            case 'ArrowUp':
+                e.preventDefault();
+                if (index > 0) $items.eq(index - 1).focus();
+                else $items.eq($items.length - 1).focus();
+                break;
+            case 'ArrowRight':
+            case 'ArrowDown':
+                e.preventDefault();
+                if (index < $items.length - 1) $items.eq(index + 1).focus();
+                else $items.eq(0).focus();
+                break;
+            case 'Escape':
+                e.preventDefault();
+                $dropdown.hide();
+                $parrotsDropdown.removeClass('show');
+                $parrotsLink.attr('aria-expanded', false).focus();
+                break;
+            case 'Tab':
+                $dropdown.hide();
+                $parrotsDropdown.removeClass('show');
+                $parrotsLink.attr('aria-expanded', false);
+                break;
         }
     });
 
