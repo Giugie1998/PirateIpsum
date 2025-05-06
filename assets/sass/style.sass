@@ -87,6 +87,23 @@ h1, h2, h3, h4, h5, h6
       &:hover
         color: $primary-color
 
+    .dropdown-menu
+      background-color: $white
+
+      &.parrots-menu
+        background: $white
+        width: 101vw
+        top: 35px
+        padding: 0 40px
+        border-top: 1px solid $primary-color
+        border-radius: 0
+
+      .dropdown-item
+        color: #000
+        &:hover
+          background-color: rgba(0, 0, 0, 0.1)
+          color: $primary-color
+
     .navbar-toggler
       border-color: #000
       &-icon
@@ -156,7 +173,7 @@ h1, h2, h3, h4, h5, h6
         transform: rotate(180deg)
 
     .dropdown-menu
-      position: absolute
+      position: fixed
       border: none
       background-color: transparent
       padding: 0.5rem
@@ -164,13 +181,18 @@ h1, h2, h3, h4, h5, h6
       min-width: 300px
       +transition(all)
       border-radius: 8px
-      @media (min-width: 768px)
-        left: 0
+      left: 1rem
+      margin-top: 1rem
+      width: 100vw
+      margin-left: calc(-50vw + 50%)
+      margin-right: calc(-50vw + 50%)
 
     .dropdown.show
       .dropdown-menu
-        opacity: 1
-        visibility: visible
+        opacity: 1;
+        visibility: visible;
+        left: 0;
+        padding: 0 40px
 
     .dropdown-item
         color: $white
