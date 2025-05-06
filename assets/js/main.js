@@ -1,7 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
     const dropdown = document.querySelector('.horizontal-dropdown');
     const parrotsLink = document.getElementById('parrotsDropdown');
     const parrotsDropdown = parrotsLink.closest('.nav-item.dropdown');
+    
+    // Handle scroll events
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 0) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
 
     // Initially hide the dropdown menu
     if (dropdown) {
