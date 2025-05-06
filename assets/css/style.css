@@ -36,8 +36,12 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 3rem;
   z-index: 1;
   width: auto;
+  height: 100vh;
   margin: 0;
-  padding: 15rem 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 5rem;
 }
 
 .text-primary {
@@ -89,14 +93,42 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.3s ease;
   margin-left: auto;
 }
+.navbar.scrolled .custom-btn:hover {
+  text-decoration: none;
+  transform: scale(1.05);
+  color: #fff;
+}
 .navbar .navbar-collapse {
   display: flex;
   justify-content: space-between;
 }
+@media (min-width: 768px) {
+  .navbar .navbar-collapse {
+    width: 100%;
+    padding: 0 2rem;
+    position: relative;
+  }
+}
 .navbar .navbar-nav {
   display: flex;
   justify-content: center;
-  flex-grow: 1;
+}
+@media (min-width: 768px) {
+  .navbar .navbar-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 768px) {
+  .navbar .navbar-nav:last-child {
+    position: relative;
+    transform: none;
+    left: auto;
+    margin-left: auto;
+  }
 }
 .navbar .navbar-nav .nav-link {
   color: #fff;
@@ -109,7 +141,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #e2b500;
 }
 .navbar .navbar-nav .nav-link .nav-chevron {
-  font-size: 0.8rem;
   margin-left: 0.3rem;
   transition: transform 0.3s ease;
   display: inline-block;
@@ -119,7 +150,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .navbar .navbar-nav .dropdown-menu {
   position: absolute;
-  left: -30vw;
   border: none;
   background-color: transparent;
   padding: 0.5rem;
@@ -127,6 +157,11 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 300px;
   transition: all 0.3s ease;
   border-radius: 8px;
+}
+@media (min-width: 768px) {
+  .navbar .navbar-nav .dropdown-menu {
+    left: 0;
+  }
 }
 .navbar .navbar-nav .dropdown.show .dropdown-menu {
   opacity: 1;
@@ -152,6 +187,11 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.3s ease;
   position: relative;
   z-index: 1003;
+}
+@media (min-width: 768px) {
+  .navbar .logo-circle {
+    margin-left: 1rem;
+  }
 }
 .navbar .logo-circle:hover {
   transform: scale(1.1);
@@ -327,13 +367,17 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   text-decoration: none;
   background-color: #e2b500;
-  color: #fff;
+  color: #fff !important;
   border-radius: 5px;
   padding: 8px 24px;
   border: none;
   font-weight: 500;
   transition: transform 0.3s ease;
-  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .custom-btn {
+    margin-right: 1rem;
+  }
 }
 .custom-btn:hover {
   text-decoration: none;
@@ -367,7 +411,7 @@ section {
   padding: 4rem;
 }
 .white-section .container {
-  margin: 10rem auto 6rem auto;
+  margin: 5rem auto;
 }
 .white-section h2 {
   font-size: 2.5rem;
@@ -378,22 +422,54 @@ section {
   font-size: 1.1rem;
 }
 
-.ships-section {
-  background-image: url("../images/ships.jpg");
-  background-size: cover;
-  background-position: center;
-  padding: 6rem 0;
-  position: relative;
-  min-height: 400px;
+@media (min-width: 768px) {
+  .ships-section, .parrots-section {
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 0;
+    position: relative;
+    min-height: 400px;
+  }
 }
 
-.parrots-section {
-  background-image: url("../images/parrots.webp");
-  background-size: cover;
-  background-position: center;
-  padding: 6rem 0;
-  position: relative;
-  min-height: 400px;
+@media (min-width: 768px) {
+  .ships-section {
+    background-image: url("../images/ships.jpg");
+  }
+}
+@media (max-width: 767.98px) {
+  .ships-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .ships-section::before {
+    content: "";
+    background-image: url("../images/ships.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .parrots-section {
+    background-image: url("../images/parrots.webp");
+  }
+}
+@media (max-width: 767.98px) {
+  .parrots-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .parrots-section::before {
+    content: "";
+    background-image: url("../images/parrots.webp");
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+    width: 100%;
+  }
 }
 
 .section-style {
@@ -403,9 +479,29 @@ section {
 }
 .section-style .content-box {
   background-color: rgba(255, 204, 0, 0.7882352941);
-  padding: 6rem;
   color: #000;
-  min-height: 400px !important;
+}
+@media (min-width: 768px) {
+  .section-style .content-box {
+    min-height: 400px !important;
+    padding: 6rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .section-style .content-box {
+    min-height: auto !important;
+    padding: 4rem;
+    margin: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  .section-style .content-box .container {
+    padding: 0 2rem;
+  }
 }
 .section-style .content-box h2 {
   font-size: 2rem;
