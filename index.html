@@ -26,22 +26,24 @@
                 </div>
             </a>
             
-            <!-- Hamburger menu for mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <!-- Custom mobile menu button -->
+            <button class="mobile-menu-btn d-lg-none" type="button" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
             
-            <!-- Navigation links -->
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav d-none d-lg-flex align-items-center">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pirate</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="parrotsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="#" id="parrotsDropdown">
                             Parrots <i class="bi bi-chevron-down nav-chevron"></i>
                         </a>
-                        <ul class="dropdown-menu horizontal-dropdown" aria-labelledby="parrotsDropdown">
+                        <ul class="dropdown-menu horizontal-dropdown">
                             <li><a class="dropdown-item" href="#"><strong>Red</strong></a></li>
                             <li><a class="dropdown-item" href="#"><strong>Violet</strong></a></li>
                             <li><a class="dropdown-item" href="#"><strong>Yellow</strong></a></li>
@@ -55,9 +57,33 @@
                         <a class="nav-link" href="#">Events</a>
                     </li>
                 </ul>
-                
-                <!-- Contact button -->
                 <a href="#" class="custom-btn">Contacts</a>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <div class="mobile-menu-content">
+                    <ul class="mobile-nav">
+                        <li><strong><a class="mobile-btn" href="#">Pirate</a></strong></li>
+                        <li class="mobile-submenu-trigger">
+                            <strong><a class="mobile-btn" href="#">Parrots <i class="bi bi-chevron-right"></i></a></strong>
+                        </li>
+                        <li><strong><a class="mobile-btn" href="#">Ships</a></strong></li>
+                        <li><strong><a class="mobile-btn" href="#">Events</a></strong></li>
+                        <li><strong><a class="custom-btn" href="#">Contacts</a></strong></li>
+                    </ul>
+                    <!-- Mobile Submenu for Parrots -->
+                    <ul class="mobile-submenu">
+                        <li class="back-button">
+                            <i class="bi bi-chevron-left"></i>
+                        </li>
+                        <li><strong><a class="mobile-btn" href="#">Red</a></strong></li>
+                        <li><strong><a class="mobile-btn" href="#">Violet</a></strong></li>
+                        <li><strong><a class="mobile-btn" href="#">Yellow</a></strong></li>
+                        <li><strong><a class="mobile-btn" href="#">Green</a></strong></li>
+                        <li><strong><a class="custom-btn" href="#">Contacts</a></strong></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -128,8 +154,15 @@
                     <h2>Events</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
+            <div class="events-container position-relative">
+                <button class="nav-arrow nav-prev d-md-none">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="nav-arrow nav-next d-md-none">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="row events-wrapper">
+                <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 1">
                         <div class="card-body">
@@ -139,7 +172,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 2">
                         <div class="card-body">
@@ -149,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 3">
                         <div class="card-body">
@@ -159,7 +192,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 4">
                         <div class="card-body">
@@ -169,7 +202,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 5">
                         <div class="card-body">
@@ -179,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4 event-item">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Event 6">
                         <div class="card-body">
