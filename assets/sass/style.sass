@@ -1,0 +1,206 @@
+// Variables
+$primary-color: #e2b500
+$primary-color-transp: #ffcc00c9
+$white: #fff
+$dark-red: #c00000
+$font-stack: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+
+// Mixins
+=flex-center
+  display: flex
+  align-items: center
+  justify-content: center
+
+=transition($property)
+  transition: $property 0.3s ease
+
+// Full-screen background
+.bg-image
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100vh
+  background:
+    image: url('../images/img1.jpg')
+    size: cover
+    position: center
+  z-index: -1
+
+// Spacer section
+.spacer-section
+  height: 200px
+  width: 100%
+  background-color: $white
+
+// Global Styles
+body
+  font-family: $font-stack
+  line-height: 1.6
+  color: $white
+  min-height: 100vh
+  position: relative
+  overflow-x: hidden
+
+// Typography
+h1, h2, h3, h4, h5, h6
+  margin-bottom: 1rem
+
+.main-title
+  color: $white
+  text-align: center
+  font-size: 3rem
+  z-index: 1
+  width: auto
+  margin: 0
+  padding: 15rem 0
+
+// Utility Classes
+.text-primary
+  color: $primary-color !important
+
+.bg-primary
+  background-color: $primary-color !important
+
+// Navbar styles
+.navbar
+  background-color: transparent
+  padding: 1.5rem 0
+  position: relative
+  z-index: 1000
+  width: 100%
+
+  .navbar-collapse
+    display: flex
+    justify-content: space-between
+
+  .navbar-nav
+    display: flex
+    justify-content: center
+    flex-grow: 1
+
+    .nav-link
+      color: $white
+      font-weight: 500
+      margin: 0 1rem
+      +transition(color)
+      font-size: 1.1rem
+
+      &:hover
+        color: $primary-color
+
+  .logo-circle
+    background-color: $primary-color
+    border-radius: 50%
+    width: 40px
+    height: 40px
+    +flex-center
+    +transition(transform)
+
+    &:hover
+      transform: scale(1.1)
+
+    svg
+      fill: $dark-red
+      width: 24px
+      height: 24px
+
+  &-toggler
+    border-color: $white
+
+    &-icon
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+
+// Custom Button style
+.card-btn
+    display: table !important
+
+.custom-btn
+  display: inline-block
+  text-decoration: none
+  background-color: $primary-color
+  color: $white
+  border-radius: 10px
+  padding: 8px 24px
+  border: none
+  font-weight: 500
+  +transition(transform)
+  margin-left: auto
+
+  &:hover
+    text-decoration: none
+    transform: scale(1.05)
+    color: $white
+
+// Sections
+section
+  width: 100%
+
+// Media Queries
+@media (max-width: 991.98px)
+  .navbar .navbar-collapse
+    text-align: center
+    margin-top: 1rem
+
+@media (max-width: 767.98px)
+  .text-center-mobile
+    text-align: center !important
+    margin-bottom: 1rem
+
+    &:last-child
+      margin-bottom: 0
+
+.white-section
+  background-color: $white
+  color: #000
+  text-align: center
+  padding: 4rem 
+
+  .container
+    margin: 10rem auto 6rem auto
+
+  h2
+    font-size: 2.5rem
+    margin-bottom: 2rem
+
+  .lorem-text
+    line-height: 1.8
+    font-size: 1.1rem
+
+.ships-section
+  background-image: url('../images/ships.jpg')
+  background-size: cover
+  background-position: center
+  padding: 6rem 0
+  position: relative
+  min-height: 400px
+
+.parrots-section
+  background-image: url('../images/parrots.webp')
+  background-size: cover
+  background-position: center
+  padding: 6rem 0
+  position: relative
+  min-height: 400px
+
+.section-style
+  position: relative
+  min-height: 400px
+  text-align: center
+
+  .content-box
+    background-color: $primary-color-transp
+    padding: 6rem
+    color: #000
+
+    h2
+      font-size: 2rem
+      margin-bottom: 1.5rem
+      color: #000
+
+    p
+      line-height: 1.6
+      margin-bottom: 0
+
+.events-section
+    color: #000
