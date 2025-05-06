@@ -1,123 +1,160 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Events carousel navigation
-    const eventsWrapper = document.querySelector('.events-wrapper');
-    const prevBtn = document.querySelector('.nav-prev');
-    const nextBtn = document.querySelector('.nav-next');
-
-    if (eventsWrapper && prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            const scrollAmount = eventsWrapper.offsetWidth * 0.85; // 85% of container width
-            eventsWrapper.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
+$(document).ready(function() {
+    // Handle color links (page reload)
+    $('.dropdown-item, .mobile-submenu a').each(function() {
+        const text = $(this).text().trim().toLowerCase();
+        if(['red', 'violet', 'yellow', 'green'].includes(text)) {
+            $(this).on('click', function(e) {
+                e.preventDefault();
+                if (!$(this).hasClass('dropdown-item')) { // Only for mobile menu links
+                    closeMobileMenu();
+                }
+                window.location.reload();
             });
+        }
+    });
+
+    // Handle navigation scrolling
+    $('.nav-link, .mobile-btn').on('click', function(e) {
+        const text = $(this).text().trim().toLowerCase();
+        
+        // Skip closing menu for Parrots menu trigger
+        if ($(this).closest('.mobile-submenu-trigger').length) {
+            return;
+        }
+
+        if(text === 'pirate') {
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'smooth');
+            closeMobileMenu();
+        } else if(text === 'ships') {
+            e.preventDefault();
+            const shipsSection = $('.ships-section');
+            if(shipsSection.length) {
+                $('html, body').animate({
+                    scrollTop: shipsSection.offset().top
+                }, 'smooth');
+            }
+            closeMobileMenu();
+        } else if(text === 'events') {
+            e.preventDefault();
+            const eventsSection = $('.events-section');
+            if(eventsSection.length) {
+                $('html, body').animate({
+                    scrollTop: eventsSection.offset().top
+                }, 'smooth');
+            }
+            closeMobileMenu();
+        } else if(text === 'contacts') {
+            closeMobileMenu();
+        }
+    });
+
+    // Events carousel navigation
+    const $eventsWrapper = $('.events-wrapper');
+    const $prevBtn = $('.nav-prev');
+    const $nextBtn = $('.nav-next');
+
+    if ($eventsWrapper.length && $prevBtn.length && $nextBtn.length) {
+        $prevBtn.on('click', function() {
+            const scrollAmount = $eventsWrapper.width() * 0.85; // 85% of container width
+            $eventsWrapper.animate({
+                scrollLeft: '-=' + scrollAmount
+            }, 'smooth');
         });
 
-        nextBtn.addEventListener('click', () => {
-            const scrollAmount = eventsWrapper.offsetWidth * 0.85; // 85% of container width
-            eventsWrapper.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
+        $nextBtn.on('click', function() {
+            const scrollAmount = $eventsWrapper.width() * 0.85; // 85% of container width
+            $eventsWrapper.animate({
+                scrollLeft: '+=' + scrollAmount
+            }, 'smooth');
         });
 
         // Hide/show arrows based on scroll position
-        eventsWrapper.addEventListener('scroll', () => {
-            const maxScroll = eventsWrapper.scrollWidth - eventsWrapper.offsetWidth;
-            prevBtn.style.opacity = eventsWrapper.scrollLeft === 0 ? '0.5' : '1';
-            nextBtn.style.opacity = eventsWrapper.scrollLeft >= maxScroll - 1 ? '0.5' : '1';
+        $eventsWrapper.on('scroll', function() {
+            const maxScroll = $eventsWrapper[0].scrollWidth - $eventsWrapper.width();
+            $prevBtn.css('opacity', $eventsWrapper.scrollLeft() === 0 ? '0.5' : '1');
+            $nextBtn.css('opacity', $eventsWrapper.scrollLeft() >= maxScroll - 1 ? '0.5' : '1');
         });
     }
 
-    const navbar = document.querySelector('.navbar');
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const submenuTrigger = document.querySelector('.mobile-submenu-trigger');
-    const mobileSubmenu = document.querySelector('.mobile-submenu');
-    const backButton = document.querySelector('.back-button');
+    const $navbar = $('.navbar');
+    const $mobileMenuBtn = $('.mobile-menu-btn');
+    const $mobileMenu = $('.mobile-menu');
+    const $submenuTrigger = $('.mobile-submenu-trigger');
+    const $mobileSubmenu = $('.mobile-submenu');
+    const $backButton = $('.back-button');
     
     // Desktop dropdown
-    const parrotsLink = document.getElementById('parrotsDropdown');
-    const dropdown = document.querySelector('.horizontal-dropdown');
-    const parrotsDropdown = parrotsLink ? parrotsLink.closest('.nav-item.dropdown') : null;
+    const $parrotsLink = $('#parrotsDropdown');
+    const $dropdown = $('.horizontal-dropdown');
+    const $parrotsDropdown = $parrotsLink.closest('.nav-item.dropdown');
 
     // Handle scroll events
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 0) {
-            navbar.classList.add('scrolled');
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() > 0) {
+            $navbar.addClass('scrolled');
             // Update mobile menu button color when navbar is scrolled
-            if (mobileMenuBtn) {
-                const spans = mobileMenuBtn.querySelectorAll('span');
-                spans.forEach(span => {
-                    span.style.backgroundColor = '#e2b500';
-                });
-            }
+            $mobileMenuBtn.find('span').css('backgroundColor', '#e2b500');
         } else {
-            navbar.classList.remove('scrolled');
+            $navbar.removeClass('scrolled');
             // Reset mobile menu button color
-            if (mobileMenuBtn) {
-                const spans = mobileMenuBtn.querySelectorAll('span');
-                spans.forEach(span => {
-                    span.style.backgroundColor = '#e2b500';
-                });
+            $mobileMenuBtn.find('span').css('backgroundColor', '#e2b500');
+        }
+    });
+
+    // Function to close mobile menu
+    function closeMobileMenu() {
+        if ($mobileMenuBtn.length && $mobileMenu.length) {
+            $mobileMenuBtn.removeClass('active');
+            $mobileMenu.removeClass('active');
+            $('body').css('overflow', '');
+        }
+    }
+
+    // Mobile menu toggle
+    $mobileMenuBtn.on('click', function() {
+        $(this).toggleClass('active');
+        $mobileMenu.toggleClass('active');
+        // Prevent body scroll when menu is open
+        $('body').css('overflow', $(this).hasClass('active') ? 'hidden' : '');
+    });
+
+    // Mobile submenu toggle
+    $submenuTrigger.on('click', function(e) {
+        e.preventDefault();
+        $mobileSubmenu.addClass('active');
+    });
+
+    // Back button functionality
+    $backButton.on('click', function() {
+        $mobileSubmenu.removeClass('active');
+    });
+
+    // Desktop dropdown functionality
+    $dropdown.hide();
+
+    $parrotsLink.on('click', function(e) {
+        e.preventDefault();
+        if ($(window).width() >= 992) { // Only for desktop
+            if ($dropdown.is(':hidden')) {
+                $dropdown.css('display', 'flex');
+                $parrotsDropdown.addClass('show');
+            } else {
+                $dropdown.hide();
+                $parrotsDropdown.removeClass('show');
             }
         }
     });
 
-    // Mobile menu toggle
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
-        });
-    }
-
-    // Mobile submenu toggle
-    if (submenuTrigger) {
-        submenuTrigger.addEventListener('click', function(e) {
-            e.preventDefault();
-            mobileSubmenu.classList.add('active');
-        });
-    }
-
-    // Back button functionality
-    if (backButton) {
-        backButton.addEventListener('click', function() {
-            mobileSubmenu.classList.remove('active');
-        });
-    }
-
-    // Desktop dropdown functionality
-    if (dropdown) {
-        dropdown.style.display = 'none';
-    }
-
-    if (parrotsLink) {
-        parrotsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (window.innerWidth >= 992) { // Only for desktop
-                if (dropdown) {
-                    if (dropdown.style.display === 'none') {
-                        dropdown.style.display = 'flex';
-                        parrotsDropdown.classList.add('show');
-                    } else {
-                        dropdown.style.display = 'none';
-                        parrotsDropdown.classList.remove('show');
-                    }
-                }
+    // Hide desktop dropdown when clicking outside
+    $(document).on('click', function(e) {
+        if ($(window).width() >= 992) { // Only for desktop
+            if (!$parrotsLink.is(e.target) && !$dropdown.has(e.target).length) {
+                $dropdown.hide();
+                $parrotsDropdown.removeClass('show');
             }
-        });
-
-        // Hide desktop dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (window.innerWidth >= 992) { // Only for desktop
-                if (!parrotsLink.contains(e.target) && dropdown && !dropdown.contains(e.target)) {
-                    dropdown.style.display = 'none';
-                    parrotsDropdown.classList.remove('show');
-                }
-            }
-        });
-    }
+        }
+    });
 });
