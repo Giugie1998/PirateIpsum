@@ -538,67 +538,27 @@ section {
 }
 .events-section .events-container {
   position: relative;
-}
-@media (max-width: 767.98px) {
-  .events-section .events-wrapper {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-snap-type: x mandatory;
-    padding: 0 1rem;
-    margin: 0;
-    width: 100%;
-  }
-  .events-section .events-wrapper::-webkit-scrollbar {
-    display: none;
-  }
-  .events-section .events-wrapper > div {
-    min-width: 85%;
-    flex: 0 0 85%;
-    padding: 0 0.5rem;
-    scroll-snap-align: start;
-    margin-bottom: 0;
-  }
-  .events-section .events-wrapper > div:last-child {
-    margin-right: 1rem;
-  }
-  .events-section .events-wrapper > div .card {
-    margin-bottom: 0;
-  }
-}
-.events-section .nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #e2b500;
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-.events-section .nav-arrow:hover {
-  opacity: 0.8;
-  transform: translateY(-50%) scale(1.1);
-}
-.events-section .nav-arrow.nav-prev {
-  left: -5px;
-}
-.events-section .nav-arrow.nav-next {
-  right: -5px;
-}
-.events-section .events-container {
   padding: 0 20px;
+}
+.events-section .events-container .swiper-pagination {
+  position: relative;
+  margin-top: 20px;
+}
+.events-section .events-container .swiper-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  opacity: 1;
+}
+.events-section .events-container .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #e2b500;
+}
+.events-section .events-container .events-swiper .swiper-slide {
+  height: auto;
+}
+.events-section .events-container .events-swiper .swiper-slide .card {
+  height: 100%;
+  margin-bottom: 0;
 }
 
 .timeline-section {

@@ -161,14 +161,10 @@
                 </div>
             </div>
             <div class="events-container position-relative">
-                <button class="nav-arrow nav-prev d-md-none" aria-label="Previous events">
-                    <i class="bi bi-chevron-left" aria-hidden="true"></i>
-                </button>
-                <button class="nav-arrow nav-next d-md-none" aria-label="Next events">
-                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
-                </button>
-                <div class="row events-wrapper">
-                <div class="col-lg-4 col-md-6 mb-4 event-item">
+                <!-- Swiper -->
+                <div class="swiper events-swiper d-md-none">
+                    <div class="swiper-wrapper">
+                <div class="swiper-slide event-item col-lg-4 col-md-6 mb-4">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event featuring ships and crew">
                         <div class="card-body">
@@ -178,7 +174,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4 event-item">
+                <div class="swiper-slide event-item col-lg-4 col-md-6 mb-4">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with ships and crew members">
                         <div class="card-body">
@@ -188,7 +184,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4 event-item">
+                <div class="swiper-slide event-item col-lg-4 col-md-6 mb-4">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event featuring treasure hunt">
                         <div class="card-body">
@@ -198,7 +194,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4 event-item">
+                <div class="swiper-slide event-item col-lg-4 col-md-6 mb-4">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with traditional activities">
                         <div class="card-body">
@@ -208,7 +204,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4 event-item">
+                <div class="swiper-slide event-item col-lg-4 col-md-6 mb-4">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with sea shanties">
                         <div class="card-body">
@@ -218,13 +214,80 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4 event-item">
+                <div class="swiper-slide event-item col-lg-4 col-md-6 mb-4">
                     <div class="card">
                         <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with historical reenactments">
                         <div class="card-body">
                             <h3 class="card-title">Event Title 6</h3>
                             <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
                             <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 6"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <!-- Add pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                <!-- Regular grid for desktop -->
+                <div class="row d-none d-md-flex">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event featuring ships and crew">
+                            <div class="card-body">
+                                <h3 class="card-title">Event Title 1</h3>
+                                <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
+                                <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 1"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with ships and crew members">
+                            <div class="card-body">
+                                <h3 class="card-title">Event Title 2</h3>
+                                <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
+                                <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 2"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event featuring treasure hunt">
+                            <div class="card-body">
+                                <h3 class="card-title">Event Title 3</h3>
+                                <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
+                                <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 3"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with traditional activities">
+                            <div class="card-body">
+                                <h3 class="card-title">Event Title 4</h3>
+                                <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
+                                <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 4"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with sea shanties">
+                            <div class="card-body">
+                                <h3 class="card-title">Event Title 5</h3>
+                                <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
+                                <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 5"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img src="assets/images/card-img.jpg" class="card-img-top" alt="Pirate event with historical reenactments">
+                            <div class="card-body">
+                                <h3 class="card-title">Event Title 6</h3>
+                                <p class="card-text">Pirate ipsum arrgh bounty warp jack.</p>
+                                <a href="#" class="card-btn custom-btn" aria-label="Read more about Event Title 6"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

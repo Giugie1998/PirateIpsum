@@ -58,59 +58,28 @@ $(document).ready(function() {
         }
     });
 
-    // Events carousel navigation
-    const $eventsWrapper = $('.events-wrapper');
-    const $prevBtn = $('.nav-prev');
-    const $nextBtn = $('.nav-next');
-
-    if ($eventsWrapper.length && $prevBtn.length && $nextBtn.length) {
-        // Add ARIA labels for carousel
-        $eventsWrapper.attr('role', 'region')
-                     .attr('aria-label', 'Events carousel');
-        
-        // Function to update button states
-        function updateCarouselButtons() {
-            const maxScroll = $eventsWrapper[0].scrollWidth - $eventsWrapper.width();
-            const isAtStart = $eventsWrapper.scrollLeft() === 0;
-            const isAtEnd = $eventsWrapper.scrollLeft() >= maxScroll - 1;
-            
-            $prevBtn.prop('disabled', isAtStart)
-                   .attr('aria-disabled', isAtStart)
-                   .css('opacity', isAtStart ? '0.5' : '1');
-                   
-            $nextBtn.prop('disabled', isAtEnd)
-                   .attr('aria-disabled', isAtEnd)
-                   .css('opacity', isAtEnd ? '0.5' : '1');
-        }
-
-        // Event handlers for buttons with keyboard support
-        $prevBtn.on('click keydown', function(e) {
-            if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
-            e.preventDefault();
-            const scrollAmount = $eventsWrapper.width() * 0.85;
-            $eventsWrapper.animate({
-                scrollLeft: '-=' + scrollAmount
-            }, 'smooth', updateCarouselButtons);
+    // Initialize Swiper for events
+    if (window.matchMedia('(max-width: 767.98px)').matches) {
+        const eventsSwiper = new Swiper('.events-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                // Mobile in landscape or small tablet
+                480: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 20,
+                }
+            },
+            a11y: {
+                prevSlideMessage: 'Previous event',
+                nextSlideMessage: 'Next event',
+                slideLabelMessage: 'Event {{index}} of {{slidesLength}}'
+            }
         });
-
-        $nextBtn.on('click keydown', function(e) {
-            if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
-            e.preventDefault();
-            const scrollAmount = $eventsWrapper.width() * 0.85;
-            $eventsWrapper.animate({
-                scrollLeft: '+=' + scrollAmount
-            }, 'smooth', updateCarouselButtons);
-        });
-
-        // Update buttons on scroll
-        $eventsWrapper.on('scroll', updateCarouselButtons);
-
-        // Add keyboard navigation for events cards
-        $('.event-item').attr('role', 'group')
-                       .attr('aria-roledescription', 'slide');
-        
-        // Initial button state
-        updateCarouselButtons();
     }
 
     const $navbar = $('.navbar');

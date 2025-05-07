@@ -507,66 +507,25 @@ section
 
     .events-container
         position: relative
-
-    .events-wrapper
-        @media (max-width: 767.98px)
-            display: flex
-            flex-wrap: nowrap
-            overflow-x: auto
-            scroll-behavior: smooth
-            scrollbar-width: none
-            -ms-overflow-style: none
-            scroll-snap-type: x mandatory
-            padding: 0 1rem
-            margin: 0
-            width: 100%
-            
-            &::-webkit-scrollbar
-                display: none
-
-            > div
-                min-width: 85%
-                flex: 0 0 85%
-                padding: 0 0.5rem
-                scroll-snap-align: start
-                margin-bottom: 0
-
-                &:last-child
-                    margin-right: 1rem
-
-                .card
-                    margin-bottom: 0
-
-    .nav-arrow
-        position: absolute
-        top: 50%
-        transform: translateY(-50%)
-        background-color: $primary-color
-        color: white
-        border: none
-        width: 40px
-        height: 40px
-        border-radius: 50%
-        display: flex
-        align-items: center
-        justify-content: center
-        z-index: 10
-        cursor: pointer
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2)
-        +transition(all)
-
-        &:hover
-            opacity: 0.8
-            transform: translateY(-50%) scale(1.1)
-
-        &.nav-prev
-            left: -5px
-
-        &.nav-next
-            right: -5px
-
-    .events-container
         padding: 0 20px
+
+        .swiper-pagination
+            position: relative
+            margin-top: 20px
+            .swiper-pagination-bullet
+                width: 10px
+                height: 10px
+                background-color: #ccc
+                opacity: 1
+                &-active
+                    background-color: $primary-color
+
+        .events-swiper
+            .swiper-slide
+                height: auto
+                .card
+                    height: 100%
+                    margin-bottom: 0
 
 
 .timeline-section
