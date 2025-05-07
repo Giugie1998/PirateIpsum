@@ -1,5 +1,5 @@
-# PirateIpsum
- 
+# TECH TRIAL - PirateIpsum
+
 FIGMA DESIGN 
 
 https://www.figma.com/design/Rxp2tOkUXWsZOfrBcweCen/Frontend-template-test
