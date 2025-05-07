@@ -4,6 +4,7 @@ FIGMA DESIGN
 
 https://www.figma.com/design/Rxp2tOkUXWsZOfrBcweCen/Frontend-template-test
 
+Se il link Figma non è pistato o non funziona, verificare ScreenshotModel.png
 
 VINCOLI:
 -Utilizza Bootstrap come framework, griglia a 12 colonne
