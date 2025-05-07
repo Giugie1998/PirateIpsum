@@ -181,6 +181,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
 }
+.navbar .navbar-nav .dropdown-menu .dropdown-item {
+  background-color: transparent;
+}
 .navbar .navbar-nav .dropdown.show .dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -190,6 +193,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar .navbar-nav .dropdown-item {
   color: #fff;
   padding: 0.7rem 1.2rem;
+  background-color: transparent;
   transition: background-color 0.3s ease;
 }
 .navbar .navbar-nav .dropdown-item:hover {
